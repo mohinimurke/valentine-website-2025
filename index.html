@@ -47,12 +47,13 @@ button {
   margin: 10px;
 }
 
-/* 💖 CUTE YES BUTTON */
+/* 💖 PINK YES BUTTON (NO EMOJI COLOR ISSUES) */
 #yes {
-  background: linear-gradient(135deg, #ff5d8f, #ff87ab);
+  background: linear-gradient(135deg, #ff5d8f, #ff9bbd);
   color: white;
   font-size: 18px;
-  box-shadow: 0 6px 15px rgba(255, 93, 143, 0.4);
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(255, 93, 143, 0.45);
   transition: transform 0.2s ease;
 }
 
@@ -82,7 +83,7 @@ button {
   <h1>Hi cutie 💕</h1>
   <p>Will you be my Valentine? 🥹</p>
 
-  <button id="yes" onclick="yesClicked()">💗 Yes 💗</button>
+  <button id="yes" onclick="yesClicked()">Yes 💗</button>
   <button id="no" onmouseover="noEscape()">No 🙃</button>
 </div>
 
@@ -98,4 +99,16 @@ function noEscape() {
 function yesClicked() {
   document.getElementById("card").innerHTML = `
     <h1>You just made my heart so happy 💖</h1>
-    <p>Can’t wait to
+    <p>Can’t wait to make sweet memories together 🥰</p>
+
+    <img
+      src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
+      alt="Cute hearts celebration"
+      style="width:220px;border-radius:20px;margin-top:15px;"
+    >
+  `;
+}
+</script>
+
+</body>
+</html>
