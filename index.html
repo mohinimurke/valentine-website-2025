@@ -47,12 +47,20 @@ button {
   margin: 10px;
 }
 
+/* 💖 CUTE YES BUTTON */
 #yes {
-  background: #3cb371;
+  background: linear-gradient(135deg, #ff5d8f, #ff87ab);
   color: white;
   font-size: 18px;
+  box-shadow: 0 6px 15px rgba(255, 93, 143, 0.4);
+  transition: transform 0.2s ease;
 }
 
+#yes:hover {
+  transform: scale(1.08);
+}
+
+/* NO BUTTON */
 #no {
   background: #f2f2f2;
   position: absolute;
@@ -74,10 +82,20 @@ button {
   <h1>Hi cutie 💕</h1>
   <p>Will you be my Valentine? 🥹</p>
 
-  <button id="yes" onclick="yesClicked()">💚 YES 💚</button>
+  <button id="yes" onclick="yesClicked()">💗 Yes 💗</button>
   <button id="no" onmouseover="noEscape()">No 🙃</button>
 </div>
 
 <script>
 function noEscape() {
-  const no = document.getElementByI
+  const no = document.getElementById("no");
+  no.style.animation = "shake 0.3s";
+  no.style.top = Math.random() * 80 + "vh";
+  no.style.left = Math.random() * 80 + "vw";
+  setTimeout(() => no.style.animation = "", 300);
+}
+
+function yesClicked() {
+  document.getElementById("card").innerHTML = `
+    <h1>You just made my heart so happy 💖</h1>
+    <p>Can’t wait to
