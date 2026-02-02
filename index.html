@@ -17,30 +17,25 @@ body {
   overflow: hidden;
 }
 
-/* CARD */
 .card {
   background: white;
   padding: 40px 30px;
   border-radius: 30px;
   text-align: center;
   box-shadow: 0 25px 45px rgba(0,0,0,0.25);
-  max-width: 340px;
-  z-index: 10;
+  max-width: 360px;
 }
 
 h1 {
   color: #ff5d8f;
   font-size: 24px;
-  margin-bottom: 10px;
 }
 
 p {
   color: #666;
   font-size: 15px;
-  margin-bottom: 25px;
 }
 
-/* BUTTONS */
 button {
   padding: 12px 28px;
   font-size: 16px;
@@ -48,7 +43,6 @@ button {
   border: none;
   cursor: pointer;
   margin: 10px;
-  transition: all 0.3s ease;
 }
 
 #yes {
@@ -57,17 +51,12 @@ button {
   font-size: 18px;
 }
 
-#yes:hover {
-  transform: scale(1.1);
-}
-
 #no {
   background: #f2f2f2;
-  color: #333;
   position: absolute;
 }
 
-/* NO BUTTON EFFECT */
+/* NO button chaos */
 @keyframes shake {
   0% { transform: translateX(0) scale(0.9); }
   25% { transform: translateX(-6px) scale(0.85); }
@@ -76,46 +65,15 @@ button {
   100% { transform: translateX(0) scale(0.9); }
 }
 
-/* FLOATING HEARTS */
-.heart {
-  position: absolute;
-  font-size: 18px;
-  animation: float 6s infinite ease-in;
-  opacity: 0.7;
-}
-
-@keyframes float {
-  0% { transform: translateY(100vh); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateY(-10vh); opacity: 0; }
-}
-
-/* LOVE METER */
-.meter-container {
-  width: 260px;
+/* SLIDER */
+.slider {
+  width: 100%;
   margin-top: 15px;
 }
 
-.meter {
-  width: 100%;
-  height: 18px;
-  background: #ffe1ea;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.fill {
-  width: 0%;
-  height: 100%;
-  background: linear-gradient(90deg, #ff5d8f, #ff87ab);
-  border-radius: 20px;
-  transition: width 2.5s ease;
-}
-
-/* MUSIC PROMPT */
-.music-tip {
-  font-size: 12px;
-  color: #999;
+.value {
+  font-size: 18px;
+  color: #ff5d8f;
   margin-top: 10px;
 }
 </style>
@@ -123,9 +81,9 @@ button {
 
 <body>
 
-<!-- MUSIC (STAYS IN DOM ALWAYS) -->
-<audio id="bgMusic" loop preload="auto">
-  <source src="https://cdn.pixabay.com/audio/2023/03/02/audio_6e7b7b0c4f.mp3">
+<audio id="music">
+  <!-- Upload your own MP3 into the repo and name it music.mp3 -->
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <div class="card" id="card">
@@ -134,57 +92,55 @@ button {
 
   <button id="yes" onclick="yesClicked()">💚💖 YES 💖💚</button>
   <button id="no" onmouseover="noEscape()">No 🙃</button>
-
-  <div class="music-tip">🎵 Music plays after YES</div>
 </div>
 
 <script>
-/* NO button chaos */
 function noEscape() {
   const no = document.getElementById("no");
   no.style.animation = "shake 0.4s";
-  no.style.top = Math.random() * 80 + "vh";
-  no.style.left = Math.random() * 80 + "vw";
-  setTimeout(() => no.style.animation = "", 400);
+  no.style.top = Math.random()*80 + "vh";
+  no.style.left = Math.random()*80 + "vw";
+  setTimeout(()=>no.style.animation="",400);
 }
 
-/* YES clicked */
 function yesClicked() {
-  const music = document.getElementById("bgMusic");
-  music.volume = 0.6;
-  music.play().catch(() => {});
+  document.getElementById("music").play().catch(()=>{});
 
   document.getElementById("card").innerHTML = `
     <h1>You've made my heart dance with joy! 💃💖</h1>
     <p>Let's create unforgettable memories together, cutie! ❤️</p>
 
+    <!-- 🔴 REPLACE with YOUR exact Bubu Dudu dancing GIF -->
     <img 
-      src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
-      alt="Bubu Dudu dancing"
+      src="bubu-dudu.gif"
       style="width:220px;border-radius:20px;margin:15px 0;"
     >
 
-    <div class="meter-container">
-      <p style="margin-bottom:8px;">How much do you love me? 😌</p>
-      <div class="meter">
-        <div class="fill" id="fill"></div>
-      </div>
-    </div>
-  `;
+    <p><strong>How much do you love me? 😌</strong></p>
+    <input 
+      type="range" 
+      min="0" 
+      max="100" 
+      value="50" 
+      class="slider"
+      oninput="updateLove(this.value)"
+    >
 
-  setTimeout(() => {
-    document.getElementById("fill").style.width = "100%";
-  }, 600);
+    <div class="value" id="loveValue">50% 💗</div>
+    <p id="loveText">Hmm… suspiciously mid 😏</p>
+  `;
 }
 
-/* Floating hearts */
-for (let i = 0; i < 25; i++) {
-  let heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = Math.random() > 0.5 ? "💖" : "💗";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
-  document.body.appendChild(heart);
+function updateLove(val) {
+  const text = document.getElementById("loveText");
+  const value = document.getElementById("loveValue");
+
+  value.innerHTML = val + "% 💖";
+
+  if (val < 30) text.innerHTML = "EXCUSE ME?? 😤";
+  else if (val < 60) text.innerHTML = "Okay okay… acceptable 😌";
+  else if (val < 90) text.innerHTML = "Awww I knew it 🥹💕";
+  else text.innerHTML = "MARRY ME ALREADY 💍😭";
 }
 </script>
 
