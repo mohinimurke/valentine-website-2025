@@ -8,13 +8,12 @@
 <style>
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(135deg, #ffd1dc, #ffe6eb);
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Poppins', 'Segoe UI', sans-serif;
-  overflow: hidden;
 }
 
 .card {
@@ -24,6 +23,7 @@ body {
   text-align: center;
   box-shadow: 0 25px 45px rgba(0,0,0,0.25);
   max-width: 360px;
+  width: 90%;
 }
 
 h1 {
@@ -37,7 +37,7 @@ p {
 }
 
 button {
-  padding: 12px 28px;
+  padding: 12px 26px;
   font-size: 16px;
   border-radius: 30px;
   border: none;
@@ -56,7 +56,6 @@ button {
   position: absolute;
 }
 
-/* NO button chaos */
 @keyframes shake {
   0% { transform: translateX(0) scale(0.9); }
   25% { transform: translateX(-6px) scale(0.85); }
@@ -71,7 +70,7 @@ button {
   margin-top: 15px;
 }
 
-.value {
+.love-value {
   font-size: 18px;
   color: #ff5d8f;
   margin-top: 10px;
@@ -81,8 +80,8 @@ button {
 
 <body>
 
-<audio id="music">
-  <!-- Upload your own MP3 into the repo and name it music.mp3 -->
+<!-- MUSIC: upload your own MP3 and name it music.mp3 -->
+<audio id="music" preload="auto">
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -92,9 +91,16 @@ button {
 
   <button id="yes" onclick="yesClicked()">💚💖 YES 💖💚</button>
   <button id="no" onmouseover="noEscape()">No 🙃</button>
+
+  <p style="font-size:12px;color:#999;">🎵 Tap YES or Play Music</p>
+  <button onclick="playMusic()">▶ Play music</button>
 </div>
 
 <script>
+function playMusic() {
+  document.getElementById("music").play().catch(()=>{});
+}
+
 function noEscape() {
   const no = document.getElementById("no");
   no.style.animation = "shake 0.4s";
@@ -104,43 +110,35 @@ function noEscape() {
 }
 
 function yesClicked() {
-  document.getElementById("music").play().catch(()=>{});
+  playMusic();
 
   document.getElementById("card").innerHTML = `
     <h1>You've made my heart dance with joy! 💃💖</h1>
     <p>Let's create unforgettable memories together, cutie! ❤️</p>
 
-    <!-- 🔴 REPLACE with YOUR exact Bubu Dudu dancing GIF -->
-    <img 
-      src="bubu-dudu.gif"
-      style="width:220px;border-radius:20px;margin:15px 0;"
-    >
+    <!-- 👉 PUT YOUR EXACT BUBU DUDU GIF HERE -->
+    <img src="bubu-dudu.gif"
+         style="width:220px;border-radius:20px;margin:15px 0;">
 
     <p><strong>How much do you love me? 😌</strong></p>
-    <input 
-      type="range" 
-      min="0" 
-      max="100" 
-      value="50" 
-      class="slider"
-      oninput="updateLove(this.value)"
-    >
 
-    <div class="value" id="loveValue">50% 💗</div>
-    <p id="loveText">Hmm… suspiciously mid 😏</p>
+    <input type="range" min="0" max="100" value="50"
+           class="slider"
+           oninput="updateLove(this.value)">
+
+    <div class="love-value" id="loveValue">50% 💗</div>
+    <p id="loveText">Hmm… suspicious 😏</p>
   `;
 }
 
 function updateLove(val) {
+  document.getElementById("loveValue").innerText = val + "% 💖";
   const text = document.getElementById("loveText");
-  const value = document.getElementById("loveValue");
 
-  value.innerHTML = val + "% 💖";
-
-  if (val < 30) text.innerHTML = "EXCUSE ME?? 😤";
-  else if (val < 60) text.innerHTML = "Okay okay… acceptable 😌";
-  else if (val < 90) text.innerHTML = "Awww I knew it 🥹💕";
-  else text.innerHTML = "MARRY ME ALREADY 💍😭";
+  if (val < 30) text.innerText = "EXCUSE ME?? 😤";
+  else if (val < 60) text.innerText = "Okay… acceptable 😌";
+  else if (val < 90) text.innerText = "Awww 🥹💕";
+  else text.innerText = "MARRY ME ALREADY 💍😭";
 }
 </script>
 
