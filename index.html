@@ -109,4 +109,84 @@ button {
   height: 100%;
   background: linear-gradient(90deg, #ff5d8f, #ff87ab);
   border-radius: 20px;
-  transi
+  transition: width 2.5s ease;
+}
+
+/* MUSIC PROMPT */
+.music-tip {
+  font-size: 12px;
+  color: #999;
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC (STAYS IN DOM ALWAYS) -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="https://cdn.pixabay.com/audio/2023/03/02/audio_6e7b7b0c4f.mp3">
+</audio>
+
+<div class="card" id="card">
+  <h1>Hi cutie 💕</h1>
+  <p>Will you be my Valentine forever? 🥹</p>
+
+  <button id="yes" onclick="yesClicked()">💚💖 YES 💖💚</button>
+  <button id="no" onmouseover="noEscape()">No 🙃</button>
+
+  <div class="music-tip">🎵 Music plays after YES</div>
+</div>
+
+<script>
+/* NO button chaos */
+function noEscape() {
+  const no = document.getElementById("no");
+  no.style.animation = "shake 0.4s";
+  no.style.top = Math.random() * 80 + "vh";
+  no.style.left = Math.random() * 80 + "vw";
+  setTimeout(() => no.style.animation = "", 400);
+}
+
+/* YES clicked */
+function yesClicked() {
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.6;
+  music.play().catch(() => {});
+
+  document.getElementById("card").innerHTML = `
+    <h1>You've made my heart dance with joy! 💃💖</h1>
+    <p>Let's create unforgettable memories together, cutie! ❤️</p>
+
+    <img 
+      src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
+      alt="Bubu Dudu dancing"
+      style="width:220px;border-radius:20px;margin:15px 0;"
+    >
+
+    <div class="meter-container">
+      <p style="margin-bottom:8px;">How much do you love me? 😌</p>
+      <div class="meter">
+        <div class="fill" id="fill"></div>
+      </div>
+    </div>
+  `;
+
+  setTimeout(() => {
+    document.getElementById("fill").style.width = "100%";
+  }, 600);
+}
+
+/* Floating hearts */
+for (let i = 0; i < 25; i++) {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = Math.random() > 0.5 ? "💖" : "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
