@@ -1,129 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Just One Question 💌</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>For My Cutie 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ffafbd, #ffc3a0);
-      font-family: 'Poppins', 'Segoe UI', sans-serif;
-      overflow: hidden;
-    }
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffd1dc, #ffe6eb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
 
-    .card {
-      background: white;
-      padding: 45px 35px;
-      border-radius: 28px;
-      text-align: center;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-      max-width: 320px;
-      z-index: 10;
-    }
+.card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+  max-width: 340px;
+  z-index: 10;
+}
 
-    h1 {
-      color: #ff4d6d;
-      font-size: 26px;
-      margin-bottom: 10px;
-    }
+h1 {
+  color: #ff5d8f;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
 
-    p {
-      color: #555;
-      font-size: 15px;
-      margin-bottom: 25px;
-    }
+p {
+  color: #666;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
 
-    button {
-      padding: 12px 26px;
-      font-size: 16px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      margin: 8px;
-      transition: transform 0.2s;
-    }
+button {
+  padding: 12px 28px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  transition: all 0.3s ease;
+}
 
-    #yes {
-      background: #ff4d6d;
-      color: white;
-    }
+#yes {
+  background: #3cb371;
+  color: white;
+  font-size: 18px;
+}
 
-    #yes:hover {
-      transform: scale(1.08);
-    }
+#yes:hover {
+  transform: scale(1.1);
+}
 
-    #no {
-      background: #f1f1f1;
-      color: #333;
-      position: absolute;
-    }
+#no {
+  background: #f2f2f2;
+  color: #333;
+  position: absolute;
+}
 
-    .heart {
-      position: absolute;
-      font-size: 18px;
-      opacity: 0.7;
-      animation: float 6s infinite ease-in;
-    }
+.heart {
+  position: absolute;
+  font-size: 18px;
+  animation: float 6s infinite ease-in;
+  opacity: 0.7;
+}
 
-    @keyframes float {
-      0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
-      50% { opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
-    }
-  </style>
+@keyframes float {
+  0% { transform: translateY(100vh); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.meter {
+  width: 100%;
+  background: #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.fill {
+  width: 0%;
+  height: 18px;
+  background: linear-gradient(90deg,#ff5d8f,#ff87ab);
+  transition: width 2s ease;
+}
+</style>
 </head>
 
 <body>
 
-<div class="card">
-  <h1>Will you be my Valentine? 💘</h1>
-  <p>I promise snacks, laughter & bad jokes 🥹</p>
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
 
-  <button id="yes" onclick="yesClicked()">Yes 💖</button>
-  <button id="no" onmouseover="moveNo()">No 🙃</button>
+<div class="card" id="card">
+  <h1>Hi cutie 💕</h1>
+  <p>Will you be my Valentine forever? 🥹</p>
+
+  <button id="yes" onclick="yesClicked()">💚💖 YES 💖💚</button>
+  <button id="no" onmouseover="noEscape()">No 🙃</button>
 </div>
 
 <script>
-  function yesClicked() {
-    document.body.innerHTML = `
-      <div style="
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        height:100vh;
-        flex-direction:column;
-        color:white;
-        font-family:Poppins, sans-serif;
-        text-align:center;
-        background:linear-gradient(135deg,#ff758c,#ff7eb3);
-      ">
-        <h1 style="font-size:36px;">YAYYY 💕🥰</h1>
-        <p style="font-size:18px;">Best decision of your day 😌💍</p>
+function noEscape() {
+  const no = document.getElementById("no");
+  no.style.animation = "shake 0.4s";
+  no.style.transform = "scale(0.85)";
+  no.style.top = Math.random() * 80 + "vh";
+  no.style.left = Math.random() * 80 + "vw";
+  setTimeout(() => no.style.animation = "", 400);
+}
+
+function yesClicked() {
+  document.body.innerHTML = `
+    <div style="
+      height:100vh;
+      width:100vw;
+      background:linear-gradient(135deg,#ffb6c1,#ffd1dc);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      font-family:Poppins,sans-serif;
+      text-align:center;
+      color:#fff;
+      padding:20px;
+    ">
+      <h1>You've made my heart dance with joy! 💃💖</h1>
+      <p style="max-width:360px;">
+        Let's create unforgettable memories together, cutie! ❤️
+      </p>
+
+      <img src="https://media.tenor.com/2roX3uxz_68AAAAC/bubu-dudu-dance.gif"
+           style="width:220px;border-radius:20px;margin:15px 0;">
+
+      <p>How much do you love me? 😌</p>
+      <div class="meter">
+        <div class="fill" id="fill"></div>
       </div>
-    `;
-  }
+    </div>
+  `;
 
-  function moveNo() {
-    const no = document.getElementById("no");
-    no.style.top = Math.random() * 80 + "vh";
-    no.style.left = Math.random() * 80 + "vw";
-  }
+  setTimeout(() => {
+    document.getElementById("fill").style.width = "100%";
+  }, 500);
+}
 
-  for (let i = 0; i < 25; i++) {
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = Math.random() > 0.5 ? "💖" : "💗";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
-    heart.style.fontSize = (Math.random() * 10 + 14) + "px";
-    document.body.appendChild(heart);
-  }
+for (let i = 0; i < 25; i++) {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = Math.random() > 0.5 ? "💖" : "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  document.body.appendChild(heart);
+}
 </script>
 
 </body>
