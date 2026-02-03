@@ -6,83 +6,142 @@
 <title>Hi Cutie 💖</title>
 
 <style>
-  body {
-    background: #ffe6f0;
-    font-family: "Poppins", sans-serif;
-    text-align: center;
-    padding: 40px;
-    overflow: hidden;
-  }
+body {
+  background: #ffe6f0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 40px;
+  overflow: hidden;
+}
 
-  h1 {
-    color: #e84393;
-    font-size: 32px;
-    margin-bottom: 30px;
-  }
+h1 {
+  color: #e84393;
+  font-size: 30px;
+  margin-bottom: 30px;
+  animation: fadeIn 1.5s ease forwards;
+}
 
-  .fade-in {
-    animation: fadeIn 1.5s ease forwards;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+.buttons {
+  position: relative;
+  height: 200px;
+}
 
-  .buttons {
-    position: relative;
-    height: 200px;
-  }
+button {
+  font-size: 22px;
+  padding: 14px 28px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+}
 
-  button {
-    font-size: 22px;
-    padding: 14px 28px;
-    border-radius: 14px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+#yesBtn {
+  background: #4cd137;
+  color: white;
+  box-shadow: 0 0 12px pink;
+}
 
-  #yesBtn {
-    background: #4cd137;
-    color: white;
-    box-shadow: 0 0 12px pink;
-  }
+#noBtn {
+  background: #ff7675;
+  color: white;
+  position: absolute;
+}
 
-  #noBtn {
-    background: #ff7675;
-    color: white;
-    position: absolute;
-  }
+.shake {
+  animation: shake 0.4s infinite;
+}
 
-  .shake {
-    animation: shake 0.4s infinite;
-  }
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
+  100% { transform: translateX(0); }
+}
 
-  @keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-6px); }
-    50% { transform: translateX(6px); }
-    75% { transform: translateX(-6px); }
-    100% { transform: translateX(0); }
-  }
+#final {
+  display: none;
+  font-size: 24px;
+  color: #d6336c;
+  margin-top: 20px;
+  animation: fadeIn 1.2s ease forwards;
+}
 
-  #final {
-    display: none;
-    font-size: 26px;
-    color: #d6336c;
-    margin-top: 20px;
-    animation: fadeIn 1.2s ease forwards;
-  }
+img {
+  margin-top: 20px;
+  width: 220px;
+}
 
-  img {
-    margin-top: 20px;
-    width: 230px;
-  }
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 22px;
+  animation: fall linear forwards;
+  z-index: 999;
+}
 
-  /* 💗 Falling Hearts */
-  .heart {
-    position: fixed;
-    top: -10px;
-    font-size: 24px;
-    anima
+@keyframes fall {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(100vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>
+  Hi Cutie 💕<br>
+  Will you be my Valentine forever?
+</h1>
+
+<div class="buttons">
+  <button id="yesBtn">💗 YES 💗</button>
+  <button id="noBtn">NO 😜</button>
+</div>
+
+<div id="final">
+  🎉 Yayyy!!!! You've made my heart dance with joy! 💃<br>
+  Let’s create unforgettable memories together, cutie! ❤️
+  <br>
+  <img src="https://media.tenor.com/1s3A0aZ9p3UAAAAi/bubu-dudu-love.gif" alt="love gif">
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const final = document.getElementById("final");
+const buttons = document.querySelector(".buttons");
+
+noBtn.addEventListener("mouseover", () => {
+  noBtn.classList.add("shake");
+  noBtn.style.top = Math.random() * 150 + "px";
+  noBtn.style.left = Math.random() * 250 + "px";
+  noBtn.style.transform = "scale(0.8)";
+});
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+
+yesBtn.addEventListener("click", () => {
+  buttons.style.display = "none";
+  final.style.display = "block";
+
+  for (let i = 0; i < 40; i++) {
+    setTimeout(createHeart, i * 120);
+  }
+});
+</script>
+
+</body>
+</html>
