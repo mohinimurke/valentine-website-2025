@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hi Cutie 💖</title>
+<title>Valentine 💖</title>
 
 <style>
 body {
@@ -76,6 +76,7 @@ img {
   width: 220px;
 }
 
+/* 💗 Floating / Falling Hearts */
 .heart {
   position: fixed;
   top: -10px;
@@ -93,8 +94,8 @@ img {
 
 <body>
 
-<h1>
-  Hi Cutie 💕<br>
+<h1 id="question">
+  Hi <span id="name">Cutie</span> 💕<br>
   Will you be my Valentine forever?
 </h1>
 
@@ -105,12 +106,19 @@ img {
 
 <div id="final">
   🎉 Yayyy!!!! You've made my heart dance with joy! 💃<br>
-  Let’s create unforgettable memories together, cutie! ❤️
+  Let’s create unforgettable memories together, <span id="finalName">cutie</span>! ❤️
   <br>
   <img src="https://media.tenor.com/1s3A0aZ9p3UAAAAi/bubu-dudu-love.gif" alt="love gif">
 </div>
 
 <script>
+// 💕 Name from URL
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name") || "Cutie";
+document.getElementById("name").textContent = name;
+document.getElementById("finalName").textContent = name.toLowerCase();
+
+// 💗 NO button escape
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const final = document.getElementById("final");
@@ -123,25 +131,16 @@ noBtn.addEventListener("mouseover", () => {
   noBtn.style.transform = "scale(0.8)";
 });
 
-function createHeart() {
+// 💖 Create heart
+function createHeart(speed = "slow") {
   const heart = document.createElement("div");
   heart.className = "heart";
   heart.innerHTML = "💗";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+  heart.style.animationDuration =
+    speed === "slow"
+      ? Math.random() * 5 + 6 + "s"
+      : Math.random() * 3 + 3 + "s";
+
   document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}
-
-yesBtn.addEventListener("click", () => {
-  buttons.style.display = "none";
-  final.style.display = "block";
-
-  for (let i = 0; i < 40; i++) {
-    setTimeout(createHeart, i * 120);
-  }
-});
-</script>
-
-</body>
-</html>
+  setTimeout(() => heart.remov
