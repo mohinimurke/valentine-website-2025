@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine 💖</title>
+<title>Hi Cutie 💖</title>
 
 <style>
   body {
@@ -18,6 +18,15 @@
     color: #e84393;
     font-size: 32px;
     margin-bottom: 30px;
+  }
+
+  .fade-in {
+    animation: fadeIn 1.5s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .buttons {
@@ -62,49 +71,18 @@
     display: none;
     font-size: 26px;
     color: #d6336c;
+    margin-top: 20px;
+    animation: fadeIn 1.2s ease forwards;
   }
 
   img {
     margin-top: 20px;
-    width: 220px;
+    width: 230px;
   }
-</style>
-</head>
 
-<body>
-
-<h1>Hi Cutie 💕<br>Will you be my Valentine forever?</h1>
-
-<div class="buttons">
-  <button id="yesBtn">💖 YES 💖</button>
-  <button id="noBtn">NO 😜</button>
-</div>
-
-<div id="final">
-  Yayyy!!!! You've made my heart dance with joy! 💃<br>
-  Let’s create unforgettable memories together, cutie! ❤️
-  <br>
-  <img src="https://media.tenor.com/1s3A0aZ9p3UAAAAi/bubu-dudu-love.gif">
-</div>
-
-<script>
-  const noBtn = document.getElementById("noBtn");
-  const yesBtn = document.getElementById("yesBtn");
-  const final = document.getElementById("final");
-  const buttons = document.querySelector(".buttons");
-
-  noBtn.addEventListener("mouseover", () => {
-    noBtn.classList.add("shake");
-    noBtn.style.top = Math.random() * 150 + "px";
-    noBtn.style.left = Math.random() * 250 + "px";
-    noBtn.style.transform = "scale(0.8)";
-  });
-
-  yesBtn.addEventListener("click", () => {
-    buttons.style.display = "none";
-    final.style.display = "block";
-  });
-</script>
-
-</body>
-</html>
+  /* 💗 Falling Hearts */
+  .heart {
+    position: fixed;
+    top: -10px;
+    font-size: 24px;
+    anima
