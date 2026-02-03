@@ -2,112 +2,106 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>One Question 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Cutieee 💖</title>
 
 <style>
-body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(135deg, #ffd1dc, #ffe6eb);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-}
+  body {
+    background: #ffe6f0;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    padding: 50px;
+  }
 
-.card {
-  background: white;
-  padding: 40px 30px;
-  border-radius: 30px;
-  text-align: center;
-  box-shadow: 0 25px 45px rgba(0,0,0,0.25);
-  max-width: 360px;
-  width: 90%;
-}
+  h1 {
+    color: #e84393;
+    font-size: 32px;
+  }
 
-h1 {
-  color: #ff5d8f;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
+  .buttons {
+    margin-top: 40px;
+  }
 
-p {
-  color: #666;
-  font-size: 15px;
-  margin-bottom: 25px;
-}
+  button {
+    font-size: 22px;
+    padding: 14px 28px;
+    margin: 15px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-button {
-  padding: 12px 26px;
-  font-size: 16px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  margin: 10px;
-}
+  #yesBtn {
+    background: #4cd137;
+    color: white;
+    box-shadow: 0 0 10px pink;
+  }
 
-/* 💖 PINK YES BUTTON (NO EMOJI COLOR ISSUES) */
-#yes {
-  background: linear-gradient(135deg, #ff5d8f, #ff9bbd);
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  box-shadow: 0 6px 16px rgba(255, 93, 143, 0.45);
-  transition: transform 0.2s ease;
-}
+  #noBtn {
+    background: #ff7675;
+    color: white;
+    position: absolute;
+  }
 
-#yes:hover {
-  transform: scale(1.08);
-}
+  .shake {
+    animation: shake 0.4s infinite;
+  }
 
-/* NO BUTTON */
-#no {
-  background: #f2f2f2;
-  position: absolute;
-}
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    75% { transform: translateX(-8px); }
+    100% { transform: translateX(0); }
+  }
 
-@keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
-  100% { transform: translateX(0); }
-}
+  #final {
+    display: none;
+    margin-top: 30px;
+    font-size: 26px;
+    color: #d6336c;
+  }
+
+  img {
+    margin-top: 20px;
+    width: 220px;
+  }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="card">
-  <h1>Hi cutie 💕</h1>
-  <p>Will you be my Valentine? 🥹</p>
+<h1>Hi Cutieee 💕<br>Will you be my Valentine forever?</h1>
 
-  <button id="yes" onclick="yesClicked()">Yes 💗</button>
-  <button id="no" onmouseover="noEscape()">No 🙃</button>
+<div class="buttons">
+  <button id="yesBtn">💖 YES 💖</button>
+  <button id="noBtn">NO 😜</button>
+</div>
+
+<div id="final">
+  You've made my heart dance with joy! 💃<br>
+  Let's create unforgettable memories together, cutie! ❤️
+  <br>
+  <img src="https://media.tenor.com/1s3A0aZ9p3UAAAAi/bubu-dudu-love.gif">
 </div>
 
 <script>
-function noEscape() {
-  const no = document.getElementById("no");
-  no.style.animation = "shake 0.3s";
-  no.style.top = Math.random() * 80 + "vh";
-  no.style.left = Math.random() * 80 + "vw";
-  setTimeout(() => no.style.animation = "", 300);
-}
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const final = document.getElementById("final");
 
-function yesClicked() {
-  document.getElementById("card").innerHTML = `
-    <h1>You just made my heart so happy 💖</h1>
-    <p>Can’t wait to make sweet memories together 🥰</p>
+  noBtn.addEventListener("mouseover", () => {
+    noBtn.classList.add("shake");
+    noBtn.style.top = Math.random() * 400 + "px";
+    noBtn.style.left = Math.random() * 300 + "px";
+    noBtn.style.transform = "scale(0.8)";
+  });
 
-    <img
-      src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
-      alt="Cute hearts celebration"
-      style="width:220px;border-radius:20px;margin-top:15px;"
-    >
-  `;
-}
+  yesBtn.addEventListener("click", () => {
+    document.querySelector(".buttons").style.display = "none";
+    final.style.display = "block";
+  });
 </script>
 
 </body>
