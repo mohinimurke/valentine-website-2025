@@ -3,29 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Cutieee 💖</title>
+<title>Valentine 💖</title>
 
 <style>
   body {
     background: #ffe6f0;
     font-family: "Poppins", sans-serif;
     text-align: center;
-    padding: 50px;
+    padding: 40px;
+    overflow: hidden;
   }
 
   h1 {
     color: #e84393;
     font-size: 32px;
+    margin-bottom: 30px;
   }
 
   .buttons {
-    margin-top: 40px;
+    position: relative;
+    height: 200px;
   }
 
   button {
     font-size: 22px;
     padding: 14px 28px;
-    margin: 15px;
     border-radius: 14px;
     border: none;
     cursor: pointer;
@@ -35,7 +37,7 @@
   #yesBtn {
     background: #4cd137;
     color: white;
-    box-shadow: 0 0 10px pink;
+    box-shadow: 0 0 12px pink;
   }
 
   #noBtn {
@@ -50,15 +52,14 @@
 
   @keyframes shake {
     0% { transform: translateX(0); }
-    25% { transform: translateX(-8px); }
-    50% { transform: translateX(8px); }
-    75% { transform: translateX(-8px); }
+    25% { transform: translateX(-6px); }
+    50% { transform: translateX(6px); }
+    75% { transform: translateX(-6px); }
     100% { transform: translateX(0); }
   }
 
   #final {
     display: none;
-    margin-top: 30px;
     font-size: 26px;
     color: #d6336c;
   }
@@ -72,7 +73,7 @@
 
 <body>
 
-<h1>Hi Cutieee 💕<br>Will you be my Valentine forever?</h1>
+<h1>Hi Cutie 💕<br>Will you be my Valentine forever?</h1>
 
 <div class="buttons">
   <button id="yesBtn">💖 YES 💖</button>
@@ -80,8 +81,8 @@
 </div>
 
 <div id="final">
-  You've made my heart dance with joy! 💃<br>
-  Let's create unforgettable memories together, cutie! ❤️
+  Yayyy!!!! You've made my heart dance with joy! 💃<br>
+  Let’s create unforgettable memories together, cutie! ❤️
   <br>
   <img src="https://media.tenor.com/1s3A0aZ9p3UAAAAi/bubu-dudu-love.gif">
 </div>
@@ -90,16 +91,17 @@
   const noBtn = document.getElementById("noBtn");
   const yesBtn = document.getElementById("yesBtn");
   const final = document.getElementById("final");
+  const buttons = document.querySelector(".buttons");
 
   noBtn.addEventListener("mouseover", () => {
     noBtn.classList.add("shake");
-    noBtn.style.top = Math.random() * 400 + "px";
-    noBtn.style.left = Math.random() * 300 + "px";
+    noBtn.style.top = Math.random() * 150 + "px";
+    noBtn.style.left = Math.random() * 250 + "px";
     noBtn.style.transform = "scale(0.8)";
   });
 
   yesBtn.addEventListener("click", () => {
-    document.querySelector(".buttons").style.display = "none";
+    buttons.style.display = "none";
     final.style.display = "block";
   });
 </script>
