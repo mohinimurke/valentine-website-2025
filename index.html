@@ -143,4 +143,26 @@ function createHeart(speed = "slow") {
       : Math.random() * 3 + 3 + "s";
 
   document.body.appendChild(heart);
-  setTimeout(() => heart.remov
+  setTimeout(() => heart.remove(), 8000);
+}
+
+// ✨ Floating hearts BEFORE YES (dreamy)
+const floatingHearts = setInterval(() => {
+  createHeart("slow");
+}, 1200);
+
+// 🎉 YES click
+yesBtn.addEventListener("click", () => {
+  clearInterval(floatingHearts);
+  buttons.style.display = "none";
+  final.style.display = "block";
+
+  // Heart confetti burst
+  for (let i = 0; i < 40; i++) {
+    setTimeout(() => createHeart("fast"), i * 120);
+  }
+});
+</script>
+
+</body>
+</html>
